@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity,StyleSheet} from 'react-native'
 
 const DeckList =({
     title,
@@ -7,13 +7,29 @@ const DeckList =({
     onPress
 }) => {
     return(
-        <View style={{flexDirection:'row', justifyContent:'center'}}>
-            <TouchableOpacity style={{flex:1, backgroundColor: 'steelblue', paddingTop:40, paddingBottom:40}}>
-                    <Text style={{fontSize:20}}>{title}</Text>
-                    <Text >{nbCards} cards</Text>
-            </TouchableOpacity>
+        <View style={styles.container}> 
+            <View style={styles.row}>
+                <TouchableOpacity >
+                        <Text style={{fontSize:20}}>{title}</Text>
+                        <Text >{nbCards} cards</Text>
+                </TouchableOpacity>
+            </View>
         </View>
+
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        display:'flex',
+        flex: 1,
+        flexDirection:'column',
+    },
+    row: {
+        flex: 1,
+        backgroundColor: 'steelblue', 
+        justifyContent:'center'
+    },
+})
 
 export default DeckList
