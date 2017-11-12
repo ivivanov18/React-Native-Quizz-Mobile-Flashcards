@@ -1,5 +1,8 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
+import {StackNavigator} from 'react-navigation'
+import CardAdd from './CardAdd'
+import Quizz from './Quizz'
 
 const AddCardBtn = ({ onPress }) => {
     return (
@@ -26,21 +29,40 @@ const StartQuizBtn = ({ onPress }) => {
  * @param {function} onPressAddCard - the callback when the button Add card is pressed
  * @param {function} onPressStartQuiz - the callbak when the button start quiz is pressed
  */
-const DeckDetail = ({
+const DeckDetailNav = ({
     title,
     nbCards,
     onPressAddCard,
-    onPressStartQuiz
+    onPressStartQuiz,
+    navigation
 }) => {
     return(
         <View>
             <Text>{title}</Text>
             <Text>{nbCards}</Text>
-            <AddCardBtn onPress={onPressAddCard}/>
-            <StartQuizBtn onPress={onPressStartQuiz}/>
+            <AddCardBtn onPress={() => navigation.navigate('CardAdd')}/>
+            <StartQuizBtn onPress={() => navigation.navigate('Quizz')}/>
         </View> 
     )
 
 }
+
+const DeckDetail = ({}) => {
+    return(
+        <Stack/>
+    )
+}
+
+const Stack = StackNavigator({
+    DeckDetailNav:{
+        screen: DeckDetailNav
+    },
+    CardAdd:{
+        screen: CardAdd
+    },
+    Quizz:{
+        screen: Quizz
+    }
+})
 
 export default DeckDetail

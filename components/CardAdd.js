@@ -28,3 +28,5 @@ class CardAdd extends Component{
         )
     }
 }
+
+export default CardAdd
