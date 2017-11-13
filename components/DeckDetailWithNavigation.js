@@ -29,7 +29,7 @@ const StartQuizBtn = ({ onPress }) => {
  * @param {function} onPressAddCard - the callback when the button Add card is pressed
  * @param {function} onPressStartQuiz - the callbak when the button start quiz is pressed
  */
-const DeckDetailNav = ({
+const DeckDetail = ({
     title,
     nbCards,
     onPressAddCard,
@@ -47,15 +47,15 @@ const DeckDetailNav = ({
 
 }
 
-const DeckDetail = ({}) => {
+const DeckDetailWithNavigation = ({}) => {
     return(
         <Stack/>
     )
 }
 
 const Stack = StackNavigator({
-    DeckDetailNav:{
-        screen: DeckDetailNav
+    DeckDetail:{
+        screen: DeckDetail
     },
     CardAdd:{
         screen: CardAdd
@@ -65,4 +65,4 @@ const Stack = StackNavigator({
     }
 })
 
-export default DeckDetail
+export default DeckDetailWithNavigation

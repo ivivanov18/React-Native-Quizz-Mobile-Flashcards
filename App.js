@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import DeckList from './components/DeckList'
 import DeckAdd from './components/DeckAdd'
-import DeckDetail from './components/DeckDetail'
+import DeckDetailWithNavigation from './components/DeckDetailWithNavigation'
 import {TabNavigator} from 'react-navigation'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
 import {white, purple} from './utils/colors'
@@ -11,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container} >
-        <Tabs/>
+        <DeckDetailWithNavigation/>
       </View>
     );
   }
