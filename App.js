@@ -6,13 +6,31 @@ import DeckDetailWithNavigation from './components/DeckDetailWithNavigation'
 import {TabNavigator} from 'react-navigation'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
 import {white, purple} from './utils/colors'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+import {action_decks_load_all} from './actions'
+
 
 export default class App extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.store = createStore(
+                  reducer,
+                  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+                )
+    console.log(this.store.getState())
+  }   
+
+
   render() {
     return (
-      <View style={styles.container} >
-        <DeckDetailWithNavigation/>
-      </View>
+      <Provider store={this.store}>
+        <View style={styles.container} >
+          <Tabs/>
+        </View>
+      </Provider>
     );
   }
 }

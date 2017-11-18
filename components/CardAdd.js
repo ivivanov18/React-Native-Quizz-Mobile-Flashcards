@@ -7,8 +7,13 @@ class CardAdd extends Component{
         super(props)
 
         this.state = {
-
+            question: "",
+            answer:""
         }
+    }
+
+    handleSubmit = () =>{
+        
     }
 
     render(){
