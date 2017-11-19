@@ -81,10 +81,16 @@ const MainNavigator =  StackNavigator({
     screen: DeckDetail
   },
   CardAdd:{
-    screen: CardAdd
+    screen: CardAdd,
+    navigationOptions:{
+      title: 'ADD CARD',
+    }
   },
   Quizz:{
-    screen: Quizz
+    screen: Quizz,
+    navigationOptions:{
+      title: 'Quiz',
+    }
   }
 });
 

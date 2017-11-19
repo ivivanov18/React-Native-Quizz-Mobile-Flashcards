@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text, TextInput, TouchableOpacity} from 'react-native'
+import {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 import {action_add_card_to_deck} from '../actions'
 
@@ -26,19 +26,21 @@ class CardAdd extends Component{
     render(){
         return(
             <View>
-                <Text>Adding card to: {this.props.navigation.state.params.title}</Text>
+                <Text style={{fontSize:44, marginTop:20}}>Adding card to: {this.props.navigation.state.params.title}</Text>
                 <TextInput
-                    style={{height: 40}}
+                    style={styles.input}
                     placeholder="Question"
                     onChangeText={(text) => this.setState({question: text})}
                 />
                 <TextInput
-                    style={{height: 40}}
+                    style={styles.input}
                     placeholder="Answer"
                     onChangeText={(text) => this.setState({answer: text})}
                 />
-                <TouchableOpacity onPress={this._handleSubmit}>
-                    <Text>Submit</Text>
+                <TouchableOpacity
+                    style={styles.SubmitBtn}
+                    onPress={this._handleSubmit}>
+                    <Text style={styles.SubmitBtnText}>Submit</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -49,4 +51,28 @@ const mapDispatchToProps = dispatch => ({
     addCardToDeck: (data) => dispatch(action_add_card_to_deck(data))
 })
 
+const styles = StyleSheet.create({
+    SubmitBtnText: {
+        fontSize: 22,
+        textAlign: 'center'
+    },
+    SubmitBtn:{
+        borderWidth:1,
+        height:45,
+        padding: 10,
+        borderRadius: 7,
+        marginLeft: 40,
+        marginRight: 40,
+    },
+    input: {
+        marginTop:20,
+        height: 45,
+        padding: 10,
+        backgroundColor: '#fff',
+        marginLeft: 40,
+        marginRight: 40,
+        borderRadius: 7,
+        marginBottom:30
+    },
+})
 export default connect(null,mapDispatchToProps)(CardAdd)

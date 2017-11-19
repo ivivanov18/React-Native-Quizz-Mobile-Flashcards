@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from 'react'
 import {View, Text, TouchableOpacity,StyleSheet, FlatList, Button} from 'react-native'
-import {connect} from 'react-redux' 
+import {connect} from 'react-redux'
+import {gray} from '../utils/colors'
 
 class Deck extends PureComponent{
     _onPress = () => {
@@ -11,8 +12,8 @@ class Deck extends PureComponent{
         return(
             <TouchableOpacity onPress={this._onPress}>              
                 <View id={this.props.title} style={styles.row}>
-                        <Text style={{fontSize:20}}>{this.props.title}</Text>
-                        <Text>{this.props.questions.length} 
+                        <Text style={{fontSize:32}}>{this.props.title}</Text>
+                        <Text style={{fontSize:20}}>{this.props.questions.length} 
                                 {this.props.questions.length <=1 ? " card": " cards"}</Text>
                 </View>
             </TouchableOpacity>
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'steelblue', 
         justifyContent:'center',
         borderBottomWidth: 0.5,
-        height: 100,
+        height: 150,
         alignItems:'center'
         
     },

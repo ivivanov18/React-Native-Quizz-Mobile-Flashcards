@@ -49,16 +49,16 @@ class DeckAdd extends Component {
     render(){
         return(
             <View>
-                <Text style={{fontSize: 28}}>What is the title of your new deck ?</Text>                
+                <Text style={{fontSize: 44, marginTop: 120,marginBottom: 120, padding:10}}>What is the title of your new deck ?</Text>                
                 <TextInput
-                    style={style.input}
+                    style={styles.input}
                     placeholder="Deck Title"
                     onChangeText={(text) => this.setState({deckTitle: text})}
                 />
                 <TouchableOpacity
-                    style={style.submitText}
+                    style={styles.SubmitBtn}
                     onPress={() => this.submit()}>
-                    <Text>Submit</Text>
+                    <Text style={styles.SubmitBtnText}>Submit</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -74,27 +74,35 @@ const mapStateToProps = (state) => ({
     decks: state
 });
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: 20,
+        paddingTop: 40,
     },
     input: {
-        width: 300,
-        height: 44,
-        padding: 8,
-        borderWidth: 1,
-        borderColor: '#fff',
-        backgroundColor: '#fff',
-        margin: 24,
-    },
-    submitButton: {
-        backgroundColor: '#000',
+        height: 45,
         padding: 10,
-        height: 44,
+        backgroundColor: '#fff',
+        marginLeft: 40,
+        marginRight: 40,
+        borderRadius: 7,
+        marginBottom:30
+    },
+    SubmitBtnText: {
+        fontSize: 22,
+        textAlign: 'center'
+    },
+    SubmitBtn:{
+        borderWidth:1,
+        height:45,
+        padding: 10,
+        borderRadius: 7,
+        marginLeft: 40,
+        marginRight: 40,
     }
-});
+})
+
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(DeckAdd)
