@@ -23,12 +23,12 @@ class CardAdd extends Component{
                 <TextInput
                     style={{height: 40}}
                     placeholder="Question"
-                    onChangeText={(text) => this.setState({deckTitle: text})}
+                    onChangeText={(text) => this.setState({question: text})}
                 />
                 <TextInput
                     style={{height: 40}}
                     placeholder="Answer"
-                    onChangeText={(text) => this.setState({deckTitle: text})}
+                    onChangeText={(text) => this.setState({answer: text})}
                 />
                 <TouchableOpacity onPress={this._handleSubmit}>
                     <Text>Submit</Text>
