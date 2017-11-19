@@ -19,7 +19,7 @@ class Quizz extends Component{
     render(){
         return(
             <View>
-                <Text>QUIZZ</Text>
+                <Text>Starting {this.props.navigation.state.params.title} quizz</Text>
             </View>
         )
     }

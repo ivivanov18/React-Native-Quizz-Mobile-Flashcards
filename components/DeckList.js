@@ -1,19 +1,21 @@
 import React, { Component, PureComponent } from 'react'
-import {View, Text, TouchableOpacity,StyleSheet, FlatList} from 'react-native'
+import {View, Text, TouchableOpacity,StyleSheet, FlatList, Button} from 'react-native'
 import {connect} from 'react-redux' 
 
 class Deck extends PureComponent{
     _onPress = () => {
-        this.props.onPressItem(this.props.id);        
+        this.props.onPressItem(this.props.id, this.props.questions);
     }
 
     render(){
         return(
-            <View id={this.props.title} style={styles.row} onPress={this._onPress}>
-                <Text style={{fontSize:20}} onPress={this._onPress}>{this.props.title}</Text>
-                <Text onPress={this._onPress}>{this.props.questions.length} 
-                        {this.props.questions.length <=1 ? " card": " cards"}</Text>
-            </View>
+            <TouchableOpacity onPress={this._onPress}>              
+                <View id={this.props.title} style={styles.row}>
+                        <Text style={{fontSize:20}}>{this.props.title}</Text>
+                        <Text>{this.props.questions.length} 
+                                {this.props.questions.length <=1 ? " card": " cards"}</Text>
+                </View>
+            </TouchableOpacity>
         )
     }
 
@@ -23,16 +25,18 @@ class DeckList extends Component {
 
     _keyExtractor = (item, index) => item.id;
     
-    _onPressItem = (id) => {
-        console.log("ID: ", id)
+    _onPressItem = (id, questions) => {
+        this.props.navigation.navigate('DeckDetail',{title:id, questions:questions})
     }
 
     _renderItem = ({item}) => (
         <Deck
+            key={item.title} 
             id={item.title}
             onPressItem={this._onPressItem}
             title={item.title}
             questions={item.questions}
+            navigation={this.props.navigation}
       />
     )
     
@@ -46,7 +50,6 @@ class DeckList extends Component {
                     renderItem={this._renderItem}
                 />
             </View>
-
         )
     }
 }
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
     },
     row: {
-        //backgroundColor: 'steelblue', 
+        backgroundColor: 'steelblue', 
         justifyContent:'center',
         borderBottomWidth: 0.5,
         height: 100,

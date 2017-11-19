@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text, TextInput} from 'react-native'
+import {View, Text, TextInput, TouchableOpacity} from 'react-native'
 
 class CardAdd extends Component{
 
@@ -12,23 +12,27 @@ class CardAdd extends Component{
         }
     }
 
-    handleSubmit = () =>{
-        
+    _handleSubmit = () =>{
+
     }
 
     render(){
         return(
             <View>
+                <Text>Adding card to: {this.props.navigation.state.params.title}</Text>
                 <TextInput
                     style={{height: 40}}
                     placeholder="Question"
-                    //onChangeText={(text) => this.setState({deckTitle: text})}
+                    onChangeText={(text) => this.setState({deckTitle: text})}
                 />
                 <TextInput
                     style={{height: 40}}
                     placeholder="Answer"
-                    //onChangeText={(text) => this.setState({deckTitle: text})}
+                    onChangeText={(text) => this.setState({deckTitle: text})}
                 />
+                <TouchableOpacity onPress={this._handleSubmit}>
+                    <Text>Submit</Text>
+                </TouchableOpacity>
             </View>
         )
     }

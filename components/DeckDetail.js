@@ -30,39 +30,25 @@ const StartQuizBtn = ({ onPress }) => {
  * @param {function} onPressStartQuiz - the callbak when the button start quiz is pressed
  */
 const DeckDetail = ({
-    title,
-    nbCards,
     onPressAddCard,
     onPressStartQuiz,
     navigation
 }) => {
     return(
         <View>
-            <Text>{title}</Text>
-            <Text>{nbCards}</Text>
-            <AddCardBtn onPress={() => navigation.navigate('CardAdd')}/>
-            <StartQuizBtn onPress={() => navigation.navigate('Quizz')}/>
+            <Text>Title: {navigation.state.params.title}</Text>
+            <Text>Nb of Cards: {navigation.state.params.questions.length}</Text>
+            <AddCardBtn 
+                onPress={() => navigation.navigate('CardAdd',
+                                                {title:navigation.state.params.title})}
+            />
+            <StartQuizBtn 
+                onPress={() => navigation.navigate('Quizz',
+                                                {title:navigation.state.params.title})}
+            />
         </View> 
     )
 
 }
 
-const DeckDetailWithNavigation = ({}) => {
-    return(
-        <Stack/>
-    )
-}
-
-const Stack = StackNavigator({
-    DeckDetail:{
-        screen: DeckDetail
-    },
-    CardAdd:{
-        screen: CardAdd
-    },
-    Quizz:{
-        screen: Quizz
-    }
-})
-
-export default DeckDetailWithNavigation
+export default DeckDetail
