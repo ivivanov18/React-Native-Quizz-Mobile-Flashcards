@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {View, Text, TextInput, TouchableOpacity} from 'react-native'
+import {connect} from 'react-redux'
+import {action_add_card_to_deck} from '../actions'
 
 class CardAdd extends Component{
 
@@ -13,7 +15,12 @@ class CardAdd extends Component{
     }
 
     _handleSubmit = () =>{
-
+        const questionData = {
+            title:this.props.navigation.state.params.title,
+            question: this.state.question,
+            answer: this.state.answer
+        }
+        this.props.addCardToDeck(questionData)
     }
 
     render(){
@@ -38,4 +45,8 @@ class CardAdd extends Component{
     }
 }
 
-export default CardAdd
+const mapDispatchToProps = dispatch => ({
+    addCardToDeck: (data) => dispatch(action_add_card_to_deck(data))
+})
+
+export default connect(null,mapDispatchToProps)(CardAdd)

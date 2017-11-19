@@ -1,9 +1,10 @@
 import * as ActionTypes from '../actions/actionTypes'
 
 
-const initialState = [
-        {
-          title: 'React',
+const initialState = {
+
+    React:{
+        title: 'React',
           questions: [
             {
               question: 'What is React?',
@@ -15,8 +16,9 @@ const initialState = [
             }
           ]
         },
-        {
-          title: 'JavaScript',
+
+    JavaScript:{
+        title: 'JavaScript',
           questions: [
             {
               question: 'What is a closure?',
@@ -24,35 +26,57 @@ const initialState = [
             }
           ]
         }
-    ]
+}
 
-const decks = (state = initialState, action) => {
+const decks = (state = initialState , action) => {
     switch(action.type){
         case ActionTypes.DECK_ADD:
             console.log("DECK ADD")
-            newState = [
+            return {
                 ...state,
-                {
+                [action.key]:{
                     title:action.key,
                     questions:[]
                 }
-            ]
-            console.log("new state: ", newState)
-            return newState
+            }
 
         case ActionTypes.DECKS_LOAD_ALL:
+            console.log("FETCH DECKS")
             return [...action.decks]
 
         case ActionTypes.CARD_ADD:
-            newQuestionsArray = state[action.key]['questions'].push({question:action.question, answer: action.answer})
+            console.log("ADD CARD")
+            console.log("State:", state)
+            console.log("action: ", action)
+            console.log("state[action.key]:", state[action.key])
+            console.log("state[action.key]['questions']:", state[action.key].questions)
+            console.log("state[action.key]['questions'] longueur:", state[action.key].questions.length)
+            console.log("New state:", {
+                ...state,
+                [action.key]:{
+                    title: action.key,
+                    questions: [{
+                        question: action.question,
+                        answer: action.answer
+                    },
+                    ...state[action.key].questions
+                    ]
+                }
+            })
             return{
                 ...state,
                 [action.key]:{
                     title: action.key,
-                    questions: newQuestionsArray
+                    questions: [{
+                        question: action.question,
+                        answer: action.answer
+                    },
+                    ...state[action.key].questions
+                    ]
                 }
             }
         default:
+            console.log("Default")
             return state
 
     }

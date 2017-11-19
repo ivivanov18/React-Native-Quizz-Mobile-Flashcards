@@ -17,11 +17,12 @@ export function action_add_deck(deckTitle){
     }
 }
 
-export function card_add(deckTitle, question, answer){
+export function action_add_card_to_deck(questionData){
+    console.log("add card to deck action", questionData)
     return {
         type: ActionTypes.CARD_ADD,
-        key: deckTitle,
-        question: question,
-        answer:answer
+        key: questionData.title,
+        question: questionData.question,
+        answer:questionData.answer
     }
 }
