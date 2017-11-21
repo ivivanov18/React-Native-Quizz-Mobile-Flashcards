@@ -24,6 +24,10 @@ class Deck extends PureComponent{
 
 class DeckList extends Component {
 
+    componentDidMount(){
+        //TODO: AsyncStorage load decks 
+    }
+
     _keyExtractor = (item, index) => item.id;
     
     _onPressItem = (id, questions) => {

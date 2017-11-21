@@ -14,13 +14,23 @@ class CardAdd extends Component{
         }
     }
 
+    componentDidMount(){
+        //TODO: add fix when card was added the number of cards is still the same as before adding
+    }
+
     _handleSubmit = () =>{
         const questionData = {
             title:this.props.navigation.state.params.title,
             question: this.state.question,
             answer: this.state.answer
         }
+
+        //TODO: Check whether title answer null
+
+        //TODO: AsyncStorage save card
         this.props.addCardToDeck(questionData)
+
+        //TODO: navigate to scree DECKDETAIL
     }
 
     render(){

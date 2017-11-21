@@ -3,31 +3,6 @@ import {View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
 import {connect} from 'react-redux';
 import {action_add_deck, action_decks_load_all} from '../actions'
 
-const initialState = {
-    React: {
-      title: 'React',
-      questions: [
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        }
-      ]
-    },
-    JavaScript: {
-      title: 'JavaScript',
-      questions: [
-        {
-          question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared.'
-        }
-      ]
-    }
-}
-
 
 class DeckAdd extends Component {
     
@@ -37,13 +12,17 @@ class DeckAdd extends Component {
         this.state = {
             deckTitle: ""
         }
-        //this.props.loadDecks(initialState)
     }
 
     submit = () => {
+        //TODO: check whether deck title null
+        //TODO: add check whether deck already exists
+        //TODO: AsyncStorage save card
+
         this.props.addDeck(this.state.deckTitle)
-        //this.props.dispatch(action_add_deck("Hello"))
-        console.log(this.props)
+
+        //TODO: navigate to deck list tab
+
     }
 
     render(){
