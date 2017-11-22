@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
 import {connect} from 'react-redux';
 import {action_add_deck, action_decks_load_all} from '../actions'
+import {saveDeckTitle} from '../utils/api'
 
 
 class DeckAdd extends Component {
@@ -15,12 +16,16 @@ class DeckAdd extends Component {
     }
 
     submit = () => {
-        //TODO: check whether deck title null
+        if(this.state.deckTitle === ""){
+            alert("The fields cannot be empty")
+            return
+        }
+
         //TODO: add check whether deck already exists
-        //TODO: AsyncStorage save card
 
         this.props.addDeck(this.state.deckTitle)
-
+        saveDeckTitle(this.state.deckTitle)
+        this.props.navigation.navigate('DeckList')
         //TODO: navigate to deck list tab
 
     }

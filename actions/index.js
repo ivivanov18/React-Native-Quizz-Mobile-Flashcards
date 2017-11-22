@@ -1,7 +1,7 @@
 import * as ActionTypes from './actionTypes'
 
 export function action_decks_load_all(decks){
-    console.log("load decks title :", decks)
+    console.log("load decks action :", decks)
     
     return {
         type: ActionTypes.DECKS_LOAD_ALL,
@@ -18,7 +18,6 @@ export function action_add_deck(deckTitle){
 }
 
 export function action_add_card_to_deck(questionData){
-    console.log("add card to deck action", questionData)
     return {
         type: ActionTypes.CARD_ADD,
         key: questionData.title,

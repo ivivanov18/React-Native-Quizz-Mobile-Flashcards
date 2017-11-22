@@ -2,6 +2,8 @@ import React, { Component, PureComponent } from 'react'
 import {View, Text, TouchableOpacity,StyleSheet, FlatList, Button} from 'react-native'
 import {connect} from 'react-redux'
 import {gray} from '../utils/colors'
+import {getDeck, getDecks} from '../utils/api' 
+import {action_decks_load_all} from '../actions'
 
 class Deck extends PureComponent{
     _onPress = () => {
@@ -25,7 +27,9 @@ class Deck extends PureComponent{
 class DeckList extends Component {
 
     componentDidMount(){
-        //TODO: AsyncStorage load decks 
+        getDecks().then(data => {
+            this.props.loadDecks(data)
+        })   
     }
 
     _keyExtractor = (item, index) => item.id;
@@ -47,6 +51,8 @@ class DeckList extends Component {
     
 
     render(){
+        if(this.props.decks === null || this.props.decks === undefined)
+            return <View></View>
         return(
             <View style={styles.container}> 
                 <FlatList
@@ -80,4 +86,8 @@ const mapStateToProps = (state) => ({
     decks:state
 })
 
-export default connect(mapStateToProps, null)(DeckList)
+const mapDispatchToProps = (dispatch) => ({
+    loadDecks: (data) => dispatch(action_decks_load_all(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList)

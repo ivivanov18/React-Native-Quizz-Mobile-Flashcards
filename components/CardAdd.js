@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 import {action_add_card_to_deck} from '../actions'
+import{addCardToDeck} from '../utils/api'
 
 class CardAdd extends Component{
 
@@ -9,13 +10,9 @@ class CardAdd extends Component{
         super(props)
 
         this.state = {
-            question: "",
+            question:"",
             answer:""
         }
-    }
-
-    componentDidMount(){
-        //TODO: add fix when card was added the number of cards is still the same as before adding
     }
 
     _handleSubmit = () =>{
@@ -25,12 +22,14 @@ class CardAdd extends Component{
             answer: this.state.answer
         }
 
-        //TODO: Check whether title answer null
-
-        //TODO: AsyncStorage save card
+        if(this.state.question === ""|| this.state.answer === ""){
+            alert("All filled must be filled in")
+            return
+        }
         this.props.addCardToDeck(questionData)
+        addCardToDeck(questionData.title,{question:questionData.question, answer:questionData.answer})
 
-        //TODO: navigate to scree DECKDETAIL
+        this.props.navigation.goBack()
     }
 
     render(){
@@ -58,7 +57,7 @@ class CardAdd extends Component{
 }
 
 const mapDispatchToProps = dispatch => ({
-    addCardToDeck: (data) => dispatch(action_add_card_to_deck(data))
+    addCardToDeck: (data) => dispatch(action_add_card_to_deck(data)),
 })
 
 const styles = StyleSheet.create({

@@ -28,10 +28,9 @@ const initialState = {
         }
 }
 
-const decks = (state = initialState , action) => {
+const decks = (state = {} , action) => {
     switch(action.type){
         case ActionTypes.DECK_ADD:
-            console.log("DECK ADD")
             return {
                 ...state,
                 [action.key]:{
@@ -41,8 +40,7 @@ const decks = (state = initialState , action) => {
             }
 
         case ActionTypes.DECKS_LOAD_ALL:
-            console.log("FETCH DECKS")
-            return [...action.decks]
+            return action.decks
 
         case ActionTypes.CARD_ADD:
             console.log("ADD CARD")
