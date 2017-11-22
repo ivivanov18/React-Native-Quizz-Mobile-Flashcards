@@ -12,6 +12,7 @@ import reducer from './reducers'
 import {action_decks_load_all} from './actions'
 import {white, purple} from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
+import {setLocalNotification} from './utils/helpers'
 
 
 export default class App extends React.Component {
@@ -22,7 +23,11 @@ export default class App extends React.Component {
                   reducer,
                   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
                 )
-  }   
+  } 
+
+  componentDidMount(){
+    setLocalNotification()
+  }
 
 
   render() {

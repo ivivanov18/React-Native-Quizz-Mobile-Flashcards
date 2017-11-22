@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, Button} from 'react-native'
 import {white, black, green, red} from '../utils/colors'
 import {getDeck} from '../utils/api'
+import { clearLocalNotifications,setLocalNotification} from '../utils/helpers'
 
 const CorrectBtn = ({ onPress }) => {
     return (
@@ -71,6 +72,7 @@ class Quizz extends Component{
                 nbCorrectAnswers: prevState.nbCorrectAnswers + 1,                
                 endQuestions: true
             }))
+            clearLocalNotifications().then(setLocalNotification)
             return
         }
         
@@ -83,12 +85,12 @@ class Quizz extends Component{
     }
 
     _onPressIncorrectBtn = () => {
-        //TODO si questionRemaining 0 --> afficher le score
         if((this.state.currentQuestion + 1) === this.state.nbTotalQuestions){
             this.setState((prevState) => ({
                 nbIncorrectAnswers: prevState.nbIncorrectAnswers + 1,
                 endQuestions: true
             }))
+            clearLocalNotifications().then(setLocalNotification)
             return
         }
 
