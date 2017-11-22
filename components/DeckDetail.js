@@ -40,6 +40,7 @@ class DeckDetail extends Component {
         this.state = {
             questions: []
         }
+        //TODO: Correct number of cards when card is added --> the updated number is not shown right after creation
     }
 
 

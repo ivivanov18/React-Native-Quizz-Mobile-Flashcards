@@ -26,7 +26,7 @@ class DeckAdd extends Component {
         this.props.addDeck(this.state.deckTitle)
         saveDeckTitle(this.state.deckTitle)
         this.props.navigation.navigate('DeckList')
-        //TODO: navigate to deck list tab
+        //TODO: navigate to newly created deck --> DeckDetail title
 
     }
 
