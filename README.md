@@ -12,7 +12,7 @@ The application is called Mobile Flaschcards. It lets the user to manage a set o
 - At end of the question set, the app indicates the total of correct answers. 
 
 ## Technical description
-- The app was created with 'create-react-native-app'
+- The app was created with `create-react-native-app`
 - Redux is used to manage most of the state
 - The navigation is done through TabNavigator and StackNavigator
 - The persistence of data is done through AsyncStorage
