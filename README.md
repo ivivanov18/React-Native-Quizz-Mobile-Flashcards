@@ -20,9 +20,9 @@ The application is called Mobile Flaschcards. It lets the user to manage a set o
 
 ## Install
 You can use locally on the computer the following way:
-- clone the project: git clone https://github.com/ivivanov18/xxxxxx
+- clone the project: git clone https://github.com/ivivanov18/ReactNanoDegree-Mobile-Flashcards.git
 - To install the dependencies run the command:
     - `yarn install` in the `mobile-flashcards` folder
 - To start and use the app:
-    - `yarn start``
+    - `yarn start`
     - choose the option from the menu corresponding to the iOS simulator
