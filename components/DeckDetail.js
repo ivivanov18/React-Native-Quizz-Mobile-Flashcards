@@ -45,6 +45,7 @@ class DeckDetail extends Component {
 
 
     componentDidMount(){
+        console.log("Mounted")
         getDeck(this.props.navigation.state.params.title).then(data => {
             this.setState(() => ({questions: data.questions}))
         })

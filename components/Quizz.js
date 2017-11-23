@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, Button} from 'react-native'
 import {white, black, green, red} from '../utils/colors'
 import {getDeck} from '../utils/api'
-import { clearLocalNotifications,setLocalNotification} from '../utils/helpers'
+import { clearLocalNotification,setLocalNotification} from '../utils/helpers'
 
 const CorrectBtn = ({ onPress }) => {
     return (
@@ -30,6 +30,26 @@ const SwitchQuestionAnswer = ({ onPress, title }) => {
             onPress={onPress}
             title={title}>
         </Button>    
+    )
+}
+
+const RestartQuizBtn = ({ onPress }) => {
+    return (
+      <TouchableOpacity
+        style={styles.RestartQuizBtn}
+        onPress={onPress}>
+          <Text style={styles.RestartQuizBtnText}>Restart Quiz</Text>
+      </TouchableOpacity>
+    )
+}
+
+const BackToDeckBtn = ({ onPress }) => {
+    return (
+      <TouchableOpacity
+        style={styles.BackToDeckBtn}
+        onPress={onPress}>
+          <Text style={styles.BackToDeckBtnText}>Back To Deck</Text>
+      </TouchableOpacity>
     )
 }
 
@@ -72,7 +92,7 @@ class Quizz extends Component{
                 nbCorrectAnswers: prevState.nbCorrectAnswers + 1,                
                 endQuestions: true
             }))
-            clearLocalNotifications().then(setLocalNotification)
+            clearLocalNotification().then(setLocalNotification)
             return
         }
         
@@ -90,7 +110,7 @@ class Quizz extends Component{
                 nbIncorrectAnswers: prevState.nbIncorrectAnswers + 1,
                 endQuestions: true
             }))
-            clearLocalNotifications().then(setLocalNotification)
+            clearLocalNotification().then(setLocalNotification)
             return
         }
 
@@ -108,6 +128,17 @@ class Quizz extends Component{
             isQuestion: !prevState.isQuestion
         }))
 
+    }
+
+    _onPressRestartQuizBtn = () => {
+        this.setState(() => ({
+            isQuestion: true,
+            currentQuestion: 0,
+            nbCorrectAnswers: 0,
+            nbIncorrectAnswers:0,
+            questionsRemaining:0,
+            endQuestions: false
+        }))
     }
 
 
@@ -142,12 +173,15 @@ class Quizz extends Component{
                         <IncorrectBtn onPress={this._onPressIncorrectBtn}/>
                     </View>   
             )
-        else  
+        else
             return( 
             <View>
                 <Text style={styles.titleStyling}>
                     You have {this.state.nbCorrectAnswers} correct answers.
                 </Text>
+                <RestartQuizBtn onPress={this._onPressRestartQuizBtn}/>
+                <BackToDeckBtn onPress={() => this.props.navigation.goBack()}/>
+
             </View>
             )
         
@@ -209,6 +243,34 @@ const styles = StyleSheet.create({
         marginRight: 40,
         marginBottom:30,
         marginTop:40
+    },
+    RestartQuizBtnText: {
+        color: white,
+        fontSize: 22,
+        textAlign: 'center'
+    },
+    RestartQuizBtn:{
+        backgroundColor: black,
+        height:45,
+        padding: 10,
+        borderRadius: 7,
+        marginLeft: 40,
+        marginRight: 40,
+        marginTop:30
+    },
+    BackToDeckBtnText: {
+        fontSize: 22,
+        textAlign: 'center'
+    },
+    BackToDeckBtn:{
+        borderWidth:1,
+        height:45,
+        padding: 10,
+        borderRadius: 7,
+        marginLeft: 40,
+        marginRight: 40,
+        marginBottom:30,
+        marginTop:30
     }
 
 })
