@@ -46,14 +46,11 @@ class DeckDetail extends Component {
 
     componentDidMount(){
         getDeck(this.props.navigation.state.params.title).then(data => {
-            console.log("data.questions:", data.questions)
             this.setState(() => ({questions: data.questions}))
-            console.log("this.state.questions:", this.state.questions)
         })
     }
 
     render(){
-        console.log("this.state.questions render:", this.state.questions)
         return(
             <View>
                 <View style={styles.textStyling}>

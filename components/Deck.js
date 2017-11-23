@@ -17,7 +17,6 @@ class Deck extends PureComponent{
             </TouchableOpacity>
         )
     }
-
 }
 
 const styles = StyleSheet.create({

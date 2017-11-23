@@ -43,24 +43,6 @@ const decks = (state = {} , action) => {
             return action.decks
 
         case ActionTypes.CARD_ADD:
-            console.log("ADD CARD")
-            console.log("State:", state)
-            console.log("action: ", action)
-            console.log("state[action.key]:", state[action.key])
-            console.log("state[action.key]['questions']:", state[action.key].questions)
-            console.log("state[action.key]['questions'] longueur:", state[action.key].questions.length)
-            console.log("New state:", {
-                ...state,
-                [action.key]:{
-                    title: action.key,
-                    questions: [{
-                        question: action.question,
-                        answer: action.answer
-                    },
-                    ...state[action.key].questions
-                    ]
-                }
-            })
             return{
                 ...state,
                 [action.key]:{
@@ -74,7 +56,6 @@ const decks = (state = {} , action) => {
                 }
             }
         default:
-            console.log("Default")
             return state
 
     }
