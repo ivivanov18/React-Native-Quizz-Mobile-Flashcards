@@ -28,7 +28,9 @@ class CardAdd extends Component{
         }
         this.props.addCardToDeck(questionData)
         addCardToDeck(questionData.title,{question:questionData.question, answer:questionData.answer})
-
+        this.props.navigation.state.params.refresh(questionData.title,
+                                                    {question: questionData.question,
+                                                    answer: questionData.answer })
         this.props.navigation.goBack()
     }
 

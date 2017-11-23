@@ -39,7 +39,7 @@ class DeckDetail extends Component {
 
         this.state = {
             questions: []
-        }
+        }        
         //TODO: Correct number of cards when card is added --> the updated number is not shown right after creation
     }
 
@@ -51,7 +51,15 @@ class DeckDetail extends Component {
         })
     }
 
+    
+    _refresh(title, card){
+        this.setState((prevState) => {
+            return {questions:[...prevState.questions, card]}
+        })
+    }
+
     render(){
+        console.log("Questions:", this.state.questions)
         return(
             <View>
                 <View style={styles.textStyling}>
@@ -65,7 +73,8 @@ class DeckDetail extends Component {
                 </View>
                 <AddCardBtn 
                     onPress={() => this.props.navigation.navigate('CardAdd',
-                                                    {title:this.props.navigation.state.params.title})}
+                                                    {title:this.props.navigation.state.params.title,
+                                                        refresh:this._refresh.bind(this)})}
                 />
                 <StartQuizBtn 
                     onPress={() => this.props.navigation.navigate('Quizz',
