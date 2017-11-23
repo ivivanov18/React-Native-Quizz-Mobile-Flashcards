@@ -4,25 +4,7 @@ import {connect} from 'react-redux'
 import {gray} from '../utils/colors'
 import {getDeck, getDecks} from '../utils/api' 
 import {action_decks_load_all} from '../actions'
-
-class Deck extends PureComponent{
-    _onPress = () => {
-        this.props.onPressItem(this.props.id, this.props.questions);
-    }
-
-    render(){
-        return(
-            <TouchableOpacity onPress={this._onPress}>              
-                <View id={this.props.title} style={styles.row}>
-                        <Text style={{fontSize:32}}>{this.props.title}</Text>
-                        <Text style={{fontSize:20}}>{this.props.questions.length} 
-                                {this.props.questions.length <=1 ? " card": " cards"}</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-
-}
+import Deck from './Deck'
 
 class DeckList extends Component {
 
