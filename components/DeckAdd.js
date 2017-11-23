@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
 import {connect} from 'react-redux';
 import {action_add_deck, action_decks_load_all} from '../actions'
 import {saveDeckTitle} from '../utils/api'
+import { NavigationActions } from 'react-navigation'
+
 
 
 class DeckAdd extends Component {
@@ -25,8 +27,16 @@ class DeckAdd extends Component {
 
         this.props.addDeck(this.state.deckTitle)
         saveDeckTitle(this.state.deckTitle)
-        this.props.navigation.navigate('DeckList')
-        //TODO: navigate to newly created deck --> DeckDetail title
+        //this.props.navigation.navigate('DeckDetail', {title:this.state.deckTitle}
+        
+        const navigateAction = NavigationActions.navigate({
+            routeName: 'DeckDetail',
+            params: {title:this.state.deckTitle},
+            actions: [NavigationActions.navigate({ routeName: 'HomeScreen'}),
+                    NavigationActions.navigate({ routeName: 'DeckList'})]
+            
+        })
+        this.props.navigation.dispatch(navigateAction)        
 
     }
 
