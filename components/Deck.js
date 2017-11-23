@@ -1,6 +1,9 @@
 import React, {PureComponent} from 'react'
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 
+/**
+ * @description Represents a single Deck, handles touch and navigates to DeckDetail
+ */
 class Deck extends PureComponent{
     _onPress = () => {
         this.props.onPressItem(this.props.id, this.props.questions);

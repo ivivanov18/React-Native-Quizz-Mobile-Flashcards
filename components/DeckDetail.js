@@ -6,7 +6,10 @@ import Quizz from './Quizz'
 import {gray, white, black} from '../utils/colors'
 import {getDeck} from '../utils/api'
 
-
+/**
+ * @description Functional component used to represent the Add Card button on the Deck Detail screen
+ * @param {*} param0 
+ */
 const AddCardBtn = ({ onPress }) => {
     return (
       <TouchableOpacity
@@ -17,6 +20,10 @@ const AddCardBtn = ({ onPress }) => {
     )
 }
 
+/**
+ * @description Functional component used to represent the Start Quiz button on the Deck Detail screen
+ * @param {*} param0 
+ */
 const StartQuizBtn = ({ onPress }) => {
     return (
       <TouchableOpacity
@@ -40,18 +47,16 @@ class DeckDetail extends Component {
         this.state = {
             questions: []
         }        
-        //TODO: Correct number of cards when card is added --> the updated number is not shown right after creation
     }
 
 
     componentDidMount(){
-        console.log("Mounted")
         getDeck(this.props.navigation.state.params.title).then(data => {
             this.setState(() => ({questions: data.questions}))
         })
     }
 
-    
+
     _refresh(title, card){
         this.setState((prevState) => {
             return {questions:[...prevState.questions, card]}
@@ -59,7 +64,6 @@ class DeckDetail extends Component {
     }
 
     render(){
-        console.log("Questions:", this.state.questions)
         return(
             <View>
                 <View style={styles.textStyling}>

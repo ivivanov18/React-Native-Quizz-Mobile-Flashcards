@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 import {action_add_card_to_deck} from '../actions'
 import{addCardToDeck} from '../utils/api'
 
+/**
+ * @description Component rendered when user clicks "Add card to deck" on Deck Detail screen 
+ */
 class CardAdd extends Component{
 
     constructor(props){
@@ -15,6 +18,10 @@ class CardAdd extends Component{
         }
     }
 
+    /**
+     * @description Function called when submit button is clicked
+     * @description checks for blanks, calls action, serializes, goBack to previous screen 
+     */
     _handleSubmit = () =>{
         const questionData = {
             title:this.props.navigation.state.params.title,

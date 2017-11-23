@@ -6,7 +6,9 @@ import {saveDeckTitle} from '../utils/api'
 import { NavigationActions } from 'react-navigation'
 
 
-
+/**
+ * @description Component rendered when the user clicks on a specific deck from the deck list
+ */
 class DeckAdd extends Component {
     
     constructor(props){
@@ -27,8 +29,13 @@ class DeckAdd extends Component {
 
         this.props.addDeck(this.state.deckTitle)
         saveDeckTitle(this.state.deckTitle)
-        //this.props.navigation.navigate('DeckDetail', {title:this.state.deckTitle}
         
+        /*
+        * Tried to navigate through a subRoute so that when clicked on the back arrow (being on the DetailDeck 
+        * screen the user is sent not on the add deck tab but on the decklist tab 
+        * --> Unfortunately does not work --> this is not in the requirements but would be interesting if possible
+        * and how to do it
+        */
         const navigateAction = NavigationActions.navigate({
             routeName: 'DeckDetail',
             params: {title:this.state.deckTitle},

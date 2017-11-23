@@ -5,7 +5,10 @@ import {gray} from '../utils/colors'
 import {getDeck, getDecks} from '../utils/api' 
 import {action_decks_load_all} from '../actions'
 import Deck from './Deck'
-
+/**
+ * @description Component that renders the list of decks (showing title, number of cards)
+ * @description Uses a FlatList to show and scroll down or up the decks
+ */
 class DeckList extends Component {
 
     componentDidMount(){

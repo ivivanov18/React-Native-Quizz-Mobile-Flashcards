@@ -61,6 +61,9 @@ const QuestionAnswer = ({questionAnswer}) => {
     )
 }
 
+/**
+ * @description Component rendered when the user clicks the "start quiz button"
+ */
 class Quizz extends Component{
     constructor(props){
         super(props)
